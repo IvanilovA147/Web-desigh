@@ -1,0 +1,26 @@
+# Віртуальне середовище
+venv/
+.venv/
+env/
+
+# Python кеш
+__pycache__/
+*.pyc
+*.pyo
+
+# База даних
+*.db
+
+# Логи
+*.log
+
+# IDE
+.idea/
+.vscode/
+
+# Системні файли
+.DS_Store
+Thumbs.db
+
+# Секретні файли
+.env
