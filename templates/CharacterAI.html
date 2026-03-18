@@ -64,12 +64,101 @@ img {
     to {opacity: 1;}
 }
 
-/* Extra small devices (phones, 600px and down) */
+/* ---------- Стилі для таблиці ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
+th, td {
+    border: 2px solid black;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+thead {
+    background-color: #b8d9ff; /* світло-блакитний */
+}
+
+tfoot {
+    background-color: #c0e6c0; /* світло-зелений */
+}
+
+caption {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 1.2em;
+}
+
+/* контейнер для горизонтального скролу таблиці на мобільних */
+.table-container {
+    overflow-x: auto;
+}
+
+/* ---------- Стилі для форми ---------- */
+.form-group {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: inline-block;
+    width: 140px;
+    font-weight: bold;
+}
+
+form input, form select, form textarea {
+    padding: 6px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    width: 250px;
+    box-sizing: border-box;
+}
+
+form textarea {
+    vertical-align: top;
+    resize: vertical;
+}
+
+form button {
+    background-color: darkgreen;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-left: 140px; /* вирівнювання з полями */
+}
+
+form button:hover {
+    background-color: #006400;
+}
+
+/* невелике підсвічування обов'язкових полів */
+input:required, select:required, textarea:required {
+    border-left: 4px solid #4CAF50;
+}
+
+/* адаптація для дуже малих екранів */
 @media only screen and (max-width: 600px) {
     #container {
         width: 95%;
     }
     img {
+        width: 100%;
+    }
+    form label {
+        display: block;
+        width: auto;
+        margin-bottom: 4px;
+    }
+    form input, form select, form textarea {
+        width: 100%;
+    }
+    form button {
+        margin-left: 0;
         width: 100%;
     }
 }
@@ -110,6 +199,7 @@ img {
 
 <div id="container">
 
+<!-- Існуючий блок (опис) -->
 <div class="section">
 <h1 style="color: darkblue;">Character AI</h1> <!-- лінійний CSS -->
 
@@ -156,6 +246,104 @@ alt="Логотип Character AI"
 width="300">
 </div>
 
+<!-- НОВИЙ БЛОК: Таблиця про продукт -->
+<div class="section">
+    <h2>Порівняльна таблиця тарифів Character AI</h2>
+    <div class="table-container">
+        <table>
+            <caption>Тарифні плани та можливості</caption>
+            <thead>
+                <tr>
+                    <th>Функція</th>
+                    <th>Безкоштовний</th>
+                    <th>Преміум</th>
+                    <th>Бізнес</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Кількість повідомлень на день</td>
+                    <td>100</td>
+                    <td>Необмежено</td>
+                    <td>Необмежено</td>
+                </tr>
+                <tr>
+                    <td>Створення власних ботів</td>
+                    <td>Так</td>
+                    <td>Так</td>
+                    <td>Так</td>
+                </tr>
+                <tr>
+                    <td>Доступ до експериментальних моделей</td>
+                    <td>Ні</td>
+                    <td>Так</td>
+                    <td>Так</td>
+                </tr>
+                <tr>
+                    <td>Підтримка</td>
+                    <td>Спільнота</td>
+                    <!-- об'єднання двох колонок (colspan) -->
+                    <td colspan="2">Пріоритетна (24/7)</td>
+                </tr>
+                <!-- Рядок з об'єднанням по вертикалі (rowspan) -->
+                <tr>
+                    <td rowspan="2">Додаткові функції</td>
+                    <td>—</td>
+                    <td>Розширені налаштування</td>
+                    <td>API доступ</td>
+                </tr>
+                <tr>
+                    <td>—</td>
+                    <td>Аналітика діалогів</td>
+                    <td>Інтеграції з CRM</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">* Усі плани включають базові можливості спілкування та створення ботів.</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!-- НОВИЙ БЛОК: Веб-форма -->
+<div class="section">
+    <h2>Зв'яжіться з нами</h2>
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="firstname">First name *:</label>
+            <input type="text" id="firstname" name="firstname" required minlength="3" placeholder="введіть ім'я">
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last name *:</label>
+            <input type="text" id="lastname" name="lastname" required minlength="3" placeholder="введіть прізвище">
+        </div>
+        <div class="form-group">
+            <label for="query">Type of query *:</label>
+            <select id="query" name="query" required>
+                <option value="">-- Оберіть тип --</option>
+                <option value="general">Загальне питання</option>
+                <option value="support">Технічна підтримка</option>
+                <option value="collab">Співпраця</option>
+                <option value="other">Інше</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="+380 ...">
+        </div>
+        <div class="form-group">
+            <label for="message">Your message *:</label>
+            <textarea id="message" name="message" rows="5" required placeholder="текст повідомлення..."></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Надіслати</button>
+        </div>
+    </form>
+</div>
+
+<!-- Існуючий останній блок (причина використання) -->
 <div class="section">
 <h3>Чому я користуюся Character AI</h3>
 
@@ -165,7 +353,7 @@ width="300">
 </p>
 </div>
 
-</div>
+</div> <!-- #container -->
 
 </body>
 </html>
