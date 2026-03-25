@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>YouTube — популярний відеосервіс | Практична робота №3</title>
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background-color:#f5f5f5;
+    margin:0;
+    padding:20px;
+}
+
+.section{
+    background:white;
+    border:1px solid #ccc;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+#mainTitle{
+    text-align:center;
+    color:red;
+}
+
+.section h2{
+    color:#333;
+}
+
+a[target="_blank"]{
+    color:white;
+    background:red;
+    padding:8px 12px;
+    text-decoration:none;
+    border-radius:5px;
+    display:inline-block;
+}
+
+a[target="_blank"]:hover{
+    background:black;
+}
+
+img{
+    margin-top:10px;
+    max-width:100%;
+}
+
+ul li{
+    margin:5px 0;
+}
+
+img{
+    display:block;
+}
+
+h1{
+    animation: fade 2s;
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    font-size: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.info-table caption {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #cc0000;
+    background: #f9f9f9;
+    padding: 8px;
+    caption-side: top;
+}
+
+.info-table th,
+.info-table td {
+    border: 2px solid black;
+    padding: 12px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.info-table thead tr {
+    background-color: #2c3e50;
+}
+
+.info-table thead th {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    background-color: #2c3e50;
+}
+
+.info-table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.info-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.info-table tfoot tr {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+.info-table tfoot td {
+    background-color: #e9ecef;
+    font-weight: 600;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.form-group label .required {
+    color: red;
+    margin-left: 3px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #cc0000;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(204,0,0,0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-top: 5px;
+    display: none;
+}
+
+.error-message.visible {
+    display: block;
+}
+
+.submit-btn {
+    background-color: #cc0000;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.submit-btn:hover {
+    background-color: #a00000;
+}
+
+.submit-btn:active {
+    transform: scale(0.98);
+}
+
+.form-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 20px;
+    display: none;
+    border-left: 5px solid #28a745;
+}
+
+@media only screen and (max-width: 600px) {
+    body{
+        background:#e3f2fd;
+        padding: 12px;
+    }
+    h1{
+        font-size:24px;
+    }
+    .section {
+        padding: 15px;
+    }
+    .info-table th,
+    .info-table td {
+        padding: 8px 6px;
+        font-size: 13px;
+    }
+    .submit-btn {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    h1{
+        font-size:28px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .section{
+        width:80%;
+        margin:auto;
+        margin-bottom:20px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .section{
+        width:60%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .section{
+        width:50%;
+    }
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="section">
+    <h1 id="mainTitle" style="letter-spacing:2px;">YouTube</h1>
+    <p>
+        <b>YouTube</b> — це популярна <i>платформа для перегляду та завантаження відео</i>.
+        Вона дозволяє користувачам дивитися відео, створювати власні канали та ділитися контентом
+        з людьми по всьому світу.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Основна інформація</h2>
+    <p>
+        Сервіс був створений у 2005 році та пізніше куплений компанією Google.
+        Сьогодні YouTube є одним із найпопулярніших сайтів у світі.
+    </p>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
+    alt="Логотип YouTube" width="300">
+</div>
+
+<div class="section">
+    <h2>Статистика та ключові показники YouTube</h2>
+    <div class="table-wrapper">
+        <table class="info-table">
+            <caption>Аналітика платформи YouTube (дані 2024-2025)</caption>
+            <thead>
+                <th>Категорія</th>
+                    <th>Показник / Факт</th>
+                    <th>Значення</th>
+                    <th>Примітки</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2">Аудиторія</td>
+                    <td>Щомісячна активна аудиторія</td>
+                    <td>~2.5 млрд</td>
+                    <td>У всьому світі</td>
+                </tr>
+                <tr>
+                    <td>Середній час перегляду на день</td>
+                    <td>~45 хвилин</td>
+                    <td>на одного користувача</td>
+                </tr>
+                <tr>
+                    <td>Контент</td>
+                    <td>Кількість відео на платформі</td>
+                    <td>понад 14 млрд</td>
+                    <td>станом на 2025 рік</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Фінансові показники</td>
+                    <td>Річний рекламний дохід</td>
+                    <td>$31 млрд</td>
+                    <td>за 2024 фінансовий рік</td>
+                </tr>
+                <tr>
+                    <td>Дохід від YouTube Premium</td>
+                    <td>$4.5 млрд</td>
+                    <td>зростання на 18%</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Найбільші ринки</td>
+                    <td>США, Індія, Бразилія</td>
+                    <td>60% трафіку</td>
+                </tr>
+                <tr>
+                    <td>Партнерська програма</td>
+                    <td>Кількість партнерів (YPP)</td>
+                    <td>понад 3 млн</td>
+                    <td>творці контенту</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"> Загальний тренд: YouTube залишається лідером серед відеоплатформ у світі з постійним зростанням аудиторії та доходів. (Дані агреговані для прикладу)</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Можливості YouTube</h2>
+    <ul>
+        <li>Перегляд відео різних категорій</li>
+        <li>Створення власного каналу</li>
+        <li>Завантаження власних відео</li>
+        <li>Коментування та оцінювання відео</li>
+        <li>Підписка на улюблених авторів</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h3>Чому я користуюся YouTube</h3>
+    <p>
+        Я часто використовую <b>YouTube</b> для навчання, перегляду розважальних відео
+        та пошуку корисної інформації. Тут можна знайти багато уроків,
+        оглядів та цікавого контенту.
+    </p>
+</div>
+
+<div class="section">
+    <h2>Зворотний зв'язок</h2>
+    <p>Заповніть форму, щоб залишити запит або пропозицію щодо YouTube-контенту.</p>
+
+    <form id="feedbackForm" action="#" method="post">
+        <div class="form-group">
+            <label for="firstName">First name <span class="required">*</span></label>
+            <input type="text" id="firstName" name="firstName" placeholder="Введіть ваше ім'я" required>
+            <div class="error-message" id="firstNameError">Ім'я має містити не менше 3 літер (лише букви, пробіли, дефіси).</div>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last name <span class="required">*</span></label>
+            <input type="text" id="lastName" name="lastName" placeholder="Введіть ваше прізвище" required>
+            <div class="error-message" id="lastNameError">Прізвище має містити не менше 3 літер (лише букви, пробіли, дефіси).</div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+            <div class="error-message" id="emailError">Будь ласка, введіть коректну email-адресу (наприклад, name@example.com).</div>
+        </div>
+
+        <div class="form-group">
+            <label for="queryType">Type of query <span class="required">*</span></label>
+            <select id="queryType" name="queryType" required>
+                <option value="" disabled selected>— Оберіть тип запиту —</option>
+                <option value="suggestion">Пропозиція щодо контенту</option>
+                <option value="technical">Технічна проблема на YouTube</option>
+                <option value="partnership">Співпраця / партнерство</option>
+                <option value="other">Інше питання</option>
+            </select>
+            <div class="error-message" id="queryTypeError">Будь ласка, оберіть тип запиту.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone number (необов'язково)</label>
+            <input type="tel" id="phone" name="phone" placeholder="+38 (XXX) XXX-XX-XX">
+        </div>
+
+        <div class="form-group">
+            <label for="message">Your message <span class="required">*</span></label>
+            <textarea id="message" name="message" placeholder="Опишіть ваше питання або пропозицію..." required></textarea>
+            <div class="error-message" id="messageError">Поле повідомлення не може бути порожнім.</div>
+        </div>
+
+        <button type="submit" class="submit-btn">Надіслати запит</button>
+        <div class="form-success" id="formSuccessMessage">
+            Дякуємо! Ваше повідомлення успішно відправлено.
+        </div>
+    </form>
+</div>
+
+<div class="section">
+    <h3>Посилання на сайт</h3>
+    <p>
+        Відвідати офіційний сайт можна за посиланням:
+        <a href="https://www.youtube.com" target="_blank">Перейти на YouTube</a>
+    </p>
+</div>
+
+
+</body>
+</html>
