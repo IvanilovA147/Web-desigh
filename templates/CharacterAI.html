@@ -2,358 +2,377 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Character AI - Програмний продукт</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Character AI - мультимедійний огляд продукту</title>
 
 <style>
-/* внутрішній CSS */
-
-/* форматування тексту */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 20px 0;
+    line-height: 1.5;
+}
+
+#container {
+    width: 80%;
+    margin: 0 auto;
+    backdrop-filter: blur(0px);
+}
+
+.section {
+    background-color: rgba(255, 255, 255, 0.94);
+    border-radius: 24px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+    padding: 24px 28px;
+    margin: 28px 0;
+    transition: transform 0.2s ease, box-shadow 0.2s;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.section:hover {
+    box-shadow: 0 20px 32px rgba(0, 0, 0, 0.12);
 }
 
 h1 {
     text-align: center;
     animation: fade 3s infinite alternate;
+    font-size: 2.4rem;
+    margin-top: 0;
+    color: #0a2f44;
 }
 
 h2, h3 {
-    color: darkgreen;
+    color: #1b4d2e;
+    margin-top: 0;
+    letter-spacing: -0.3px;
 }
 
-/* декоративне оформлення */
-.section {
-    background-color: white;
-    border: 1px solid gray;
-    border-radius: 10px;
+h2 {
+    border-left: 6px solid #2c7a4d;
+    padding-left: 18px;
 }
 
-/* розміри і відступи */
-#container {
-    width: 80%;
-    margin: auto;
+@keyframes fade {
+    from { opacity: 0.6; text-shadow: 0 0 0px rgba(0,0,0,0.1); }
+    to { opacity: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
 }
 
-.section {
-    padding: 20px;
+.section ul {
+    list-style: none;
+    padding-left: 0;
     margin: 20px 0;
 }
 
-/* керування потоком документа */
-ul li {
-    list-style-type: square;
+.section ul li {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 12px;
+    font-size: 1.05rem;
 }
 
-/* позиціонування */
+.section ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 22px;
+    height: 22px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/190/190411.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+}
+
 img {
-    display: block;
-    margin: auto;
-    border: 2px solid black;
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    animation: fadeInImage 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
 }
 
-/* комбінований селектор */
-.section h2 {
-    text-decoration: underline;
+@keyframes fadeInImage {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-/* анімація */
-@keyframes fade {
-    from {opacity: 0.5;}
-    to {opacity: 1;}
-}
-
-/* ---------- Стилі для таблиці ---------- */
 table {
     width: 100%;
     border-collapse: collapse;
-    border: 2px solid black;
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 th, td {
-    border: 2px solid black;
-    padding: 10px;
-    text-align: left;
+    border: 1px solid #cbd5e1;
+    padding: 12px 10px;
     vertical-align: top;
 }
 
 thead {
-    background-color: #b8d9ff; /* світло-блакитний */
+    background-color: #d9eef7;
 }
 
 tfoot {
-    background-color: #c0e6c0; /* світло-зелений */
+    background-color: #e0f2e9;
 }
 
 caption {
     font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 1.2em;
-}
-
-/* контейнер для горизонтального скролу таблиці на мобільних */
-.table-container {
-    overflow-x: auto;
-}
-
-/* ---------- Стилі для форми ---------- */
-.form-group {
-    margin-bottom: 15px;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #1e4620;
 }
 
 form label {
-    display: inline-block;
-    width: 140px;
-    font-weight: bold;
+    font-weight: 600;
+    color: #1e3a2f;
 }
-
-form input, form select, form textarea {
-    padding: 6px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    width: 250px;
-    box-sizing: border-box;
-}
-
-form textarea {
-    vertical-align: top;
-    resize: vertical;
-}
-
 form button {
-    background-color: darkgreen;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    cursor: pointer;
-    margin-left: 140px; /* вирівнювання з полями */
+    background-color: #1f6e43;
+    transition: 0.2s;
 }
-
 form button:hover {
-    background-color: #006400;
+    background-color: #0f4a2e;
+    transform: scale(1.02);
 }
 
-/* невелике підсвічування обов'язкових полів */
-input:required, select:required, textarea:required {
-    border-left: 4px solid #4CAF50;
-}
-
-/* адаптація для дуже малих екранів */
 @media only screen and (max-width: 600px) {
-    #container {
-        width: 95%;
-    }
-    img {
-        width: 100%;
-    }
-    form label {
-        display: block;
-        width: auto;
-        margin-bottom: 4px;
-    }
-    form input, form select, form textarea {
-        width: 100%;
-    }
-    form button {
-        margin-left: 0;
-        width: 100%;
-    }
+    #container { width: 94%; }
+    .section { padding: 18px; }
+    h1 { font-size: 1.8rem; }
+    form label { display: block; width: auto; margin-bottom: 5px; }
+    form input, form select, form textarea { width: 100%; }
+    form button { margin-left: 0; width: 100%; }
+    th, td { padding: 8px 6px; font-size: 0.85rem; }
 }
 
-/* Small devices (600px and up) */
 @media only screen and (min-width: 600px) {
-    #container {
-        width: 90%;
-    }
+    #container { width: 90%; }
 }
-
-/* Medium devices (768px and up) */
 @media only screen and (min-width: 768px) {
-    #container {
-        width: 80%;
-    }
+    #container { width: 85%; }
 }
-
-/* Large devices (992px and up) */
 @media only screen and (min-width: 992px) {
-    #container {
-        width: 70%;
-    }
+    #container { width: 75%; }
 }
-
-/* Extra large devices (1200px and up) */
 @media only screen and (min-width: 1200px) {
-    #container {
-        width: 60%;
-    }
+    #container { width: 65%; }
 }
 
+.format-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    justify-content: space-between;
+    margin: 25px 0 15px;
+    text-align: center;
+}
+.format-card {
+    flex: 1;
+    min-width: 180px;
+    background: #fef9e8;
+    border-radius: 28px;
+    padding: 16px 12px;
+    transition: all 0.2s;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+}
+.format-card img {
+    border-radius: 16px;
+    border: 1px solid #ddd;
+    background: white;
+    max-height: 180px;
+    object-fit: contain;
+}
+.format-card p {
+    margin: 12px 0 4px;
+    font-weight: 600;
+}
+.file-size {
+    font-size: 0.85rem;
+    color: #2c5a2e;
+    background: #e9f5e9;
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 40px;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 28px;
+    margin: 20px 0 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 28px;
+    border: none;
+}
+
+.responsive-img-box {
+    text-align: center;
+    background: #f8fafc;
+    padding: 18px;
+    border-radius: 32px;
+    margin: 20px 0;
+}
+.responsive-img-box img {
+    max-width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+small {
+    display: block;
+    margin-top: 8px;
+    color: #2c3e2f;
+}
+
+.centered-text {
+    text-align: center;
+}
+hr {
+    margin: 20px 0;
+    border: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #2c7a4d, transparent);
+}
 </style>
-
 </head>
-
 <body>
 
 <div id="container">
 
-<!-- Існуючий блок (опис) -->
-<div class="section">
-<h1 style="color: darkblue;">Character AI</h1> <!-- лінійний CSS -->
+    <div class="section">
+        <h1 style="color: #0b3b2f;">Character AI</h1>
+        <p><b>Character AI</b> - це онлайн сервіс штучного інтелекту, який дозволяє спілкуватися з різними персонажами. Користувач може створювати власних ботів або спілкуватися з уже готовими.</p>
+    </div>
 
-<p>
-<b>Character AI</b> - це онлайн сервіс штучного інтелекту, який дозволяє
-спілкуватися з різними персонажами. Користувач може створювати власних
-ботів або спілкуватися з уже готовими.
-</p>
-</div>
+    <div class="section">
+        <h2>Основна інформація</h2>
+        <p>Сервіс <i>Character AI</i> використовує технології штучного інтелекту для створення реалістичних діалогів. Його можна використовувати для навчання, розваг або творчості.</p>
+        <p>Офіційний сайт: <a href="https://character.ai" target="_blank" rel="noopener">https://character.ai</a></p>
+    </div>
 
-<div class="section">
-<h2>Основна інформація</h2>
+    <div class="section">
+        <h2>Можливості Character AI</h2>
+        <ul>
+            <li>Спілкування з персонажами</li>
+            <li>Створення власних ботів</li>
+            <li>Навчання через діалог</li>
+            <li>Рольові ігри</li>
+            <li>Необмежена творчість та інтеграція API</li>
+        </ul>
+    </div>
 
-<p>
-Сервіс <i>Character AI</i> використовує технології штучного інтелекту
-для створення реалістичних діалогів. Його можна використовувати для
-навчання, розваг або творчості.
-</p>
+    <div class="section">
+        <h3>Приклад інтерфейсу</h3>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStigmirhbvZqI-ZvjhUs0ztf9SiREyzCLTjA&s" alt="Логотип Character AI" width="300" style="display:block; margin:auto; border-radius: 20px;">
+    </div>
 
-<p>
-Офіційний сайт:
-<a href="https://character.ai" target="_blank">
-https://character.ai
-</a>
-</p>
-</div>
+    <div class="section">
+        <h2>Порівняльна таблиця тарифів Character AI</h2>
+        <div class="table-container" style="overflow-x: auto;">
+            <table>
+                <caption>Тарифні плани та можливості</caption>
+                <thead>
+                    <tr><th>Функція</th><th>Безкоштовний</th><th>Преміум</th><th>Бізнес</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Кількість повідомлень на день</td><td>100</td><td>Необмежено</td><td>Необмежено</td></tr>
+                    <tr><td>Створення власних ботів</td><td>Так</td><td>Так</td><td>Так</td></tr>
+                    <tr><td>Доступ до експериментальних моделей</td><td>Ні</td><td>Так</td><td>Так</td></tr>
+                    <tr><td>Підтримка</td><td>Спільнота</td><td colspan="2">Пріоритетна (24/7)</td></tr>
+                    <tr><td rowspan="2">Додаткові функції</td><td>—</td><td>Розширені налаштування</td><td>API доступ</td></tr>
+                    <tr><td>—</td><td>Аналітика діалогів</td><td>Інтеграції з CRM</td></tr>
+                </tbody>
+                <tfoot><tr><td colspan="4">* Усі плани включають базові можливості спілкування та створення ботів.</td></tr></tfoot>
+            </table>
+        </div>
+    </div>
 
-<div class="section">
-<h2>Можливості Character AI</h2>
+    <div class="section">
+        <h2>Зв'яжіться з нами</h2>
+        <form action="#" method="post">
+            <div class="form-group"><label for="firstname">First name *:</label><input type="text" id="firstname" name="firstname" required minlength="3" placeholder="введіть ім'я"></div>
+            <div class="form-group"><label for="lastname">Last name *:</label><input type="text" id="lastname" name="lastname" required minlength="3" placeholder="введіть прізвище"></div>
+            <div class="form-group"><label for="query">Type of query *:</label><select id="query" name="query" required><option value="">-- Оберіть тип --</option><option value="general">Загальне питання</option><option value="support">Технічна підтримка</option><option value="collab">Співпраця</option><option value="other">Інше</option></select></div>
+            <div class="form-group"><label for="phone">Phone number:</label><input type="tel" id="phone" name="phone" placeholder="+380 ..."></div>
+            <div class="form-group"><label for="message">Your message *:</label><textarea id="message" name="message" rows="5" required placeholder="текст повідомлення..."></textarea></div>
+            <div class="form-group"><button type="submit">Надіслати</button></div>
+        </form>
+    </div>
 
-<ul>
-<li>Спілкування з персонажами</li>
-<li>Створення власних ботів</li>
-<li>Навчання через діалог</li>
-<li>Рольові ігри</li>
-</ul>
-</div>
+    <div class="section">
+        <h2>Адаптивне зображення інтерфейсу</h2>
+        <p>Завантажується у різній роздільній здатності залежно від ширини екрану (технологія srcset).</p>
+        <div class="responsive-img-box">
+            <img src="https://picsum.photos/id/100/480/320"
+                 srcset="https://picsum.photos/id/100/240/160 240w,
+                         https://picsum.photos/id/100/480/320 480w,
+                         https://picsum.photos/id/100/960/640 960w"
+                 sizes="(max-width: 600px) 240px, (max-width: 992px) 480px, 960px"
+                 alt="Адаптивна ілюстрація Character AI (інтерфейс діалогу)"
+                 loading="lazy"
+                 style="width: 100%; max-width: 960px; margin: 0 auto; display: block;">
+            <small>Зображення автоматично підлаштовується під ваш пристрій: 240px / 480px / 960px</small>
+        </div>
+        <p><em>Завдяки srcset, користувачі на мобільних пристроях отримують легшу версію, а на великих екранах – максимальну якість.</em></p>
+    </div>
 
-<div class="section">
-<h3>Приклад інтерфейсу</h3>
+    <div class="section">
+        <h2>Одна ілюстрація у трьох форматах</h2>
+        <p>Одне й те саме зображення (логотип AI-спільноти) сконвертоване у <strong>JPG, PNG та GIF</strong>. Розміри файлів наведено відповідно до реального стиснення.</p>
+        <div class="format-gallery">
+            <div class="format-card">
+                <img src="Cai.jpg" alt="Формат JPG">
+                <p>JPG</p>
+                <span class="file-size">≈ 5.1 KB</span>
+                <small style="display:block;">Стиснутий, ідеально для фото</small>
+            </div>
+            <div class="format-card">
+                <img src="Cai.png" alt="Формат PNG">
+                <p>PNG</p>
+                <span class="file-size">≈ 6 KB</span>
+                <small>Прозорість, чіткість</small>
+            </div>
+            <div class="format-card">
+                <img src="Cai.gif" alt="Формат GIF">
+                <p>GIF</p>
+                <span class="file-size">≈ 3.6 KB</span>
+                <small>Анімаційний (статичний демо-кадр)</small>
+            </div>
+        </div>
+    </div>
 
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStigmirhbvZqI-ZvjhUs0ztf9SiREyzCLTjA&s"
-alt="Логотип Character AI"
-width="300">
-</div>
-
-<!-- НОВИЙ БЛОК: Таблиця про продукт -->
-<div class="section">
-    <h2>Порівняльна таблиця тарифів Character AI</h2>
-    <div class="table-container">
-        <table>
-            <caption>Тарифні плани та можливості</caption>
-            <thead>
-                <tr>
-                    <th>Функція</th>
-                    <th>Безкоштовний</th>
-                    <th>Преміум</th>
-                    <th>Бізнес</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Кількість повідомлень на день</td>
-                    <td>100</td>
-                    <td>Необмежено</td>
-                    <td>Необмежено</td>
-                </tr>
-                <tr>
-                    <td>Створення власних ботів</td>
-                    <td>Так</td>
-                    <td>Так</td>
-                    <td>Так</td>
-                </tr>
-                <tr>
-                    <td>Доступ до експериментальних моделей</td>
-                    <td>Ні</td>
-                    <td>Так</td>
-                    <td>Так</td>
-                </tr>
-                <tr>
-                    <td>Підтримка</td>
-                    <td>Спільнота</td>
-                    <!-- об'єднання двох колонок (colspan) -->
-                    <td colspan="2">Пріоритетна (24/7)</td>
-                </tr>
-                <!-- Рядок з об'єднанням по вертикалі (rowspan) -->
-                <tr>
-                    <td rowspan="2">Додаткові функції</td>
-                    <td>—</td>
-                    <td>Розширені налаштування</td>
-                    <td>API доступ</td>
-                </tr>
-                <tr>
-                    <td>—</td>
-                    <td>Аналітика діалогів</td>
-                    <td>Інтеграції з CRM</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="4">* Усі плани включають базові можливості спілкування та створення ботів.</td>
-                </tr>
-            </tfoot>
-        </table>
+    <div class="section">
+        <h2>Огляд Character AI: як це працює</h2>
+        <p>Відео-огляд можливостей платформи. Початок з 12-ї секунди.</p>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/gMaIqdzU_3M?start=12"
+                    title="Character AI - відеоогляд"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+            </iframe>
+        </div>
     </div>
 </div>
-
-<!-- НОВИЙ БЛОК: Веб-форма -->
-<div class="section">
-    <h2>Зв'яжіться з нами</h2>
-    <form action="#" method="post">
-        <div class="form-group">
-            <label for="firstname">First name *:</label>
-            <input type="text" id="firstname" name="firstname" required minlength="3" placeholder="введіть ім'я">
-        </div>
-        <div class="form-group">
-            <label for="lastname">Last name *:</label>
-            <input type="text" id="lastname" name="lastname" required minlength="3" placeholder="введіть прізвище">
-        </div>
-        <div class="form-group">
-            <label for="query">Type of query *:</label>
-            <select id="query" name="query" required>
-                <option value="">-- Оберіть тип --</option>
-                <option value="general">Загальне питання</option>
-                <option value="support">Технічна підтримка</option>
-                <option value="collab">Співпраця</option>
-                <option value="other">Інше</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone number:</label>
-            <input type="tel" id="phone" name="phone" placeholder="+380 ...">
-        </div>
-        <div class="form-group">
-            <label for="message">Your message *:</label>
-            <textarea id="message" name="message" rows="5" required placeholder="текст повідомлення..."></textarea>
-        </div>
-        <div class="form-group">
-            <button type="submit">Надіслати</button>
-        </div>
-    </form>
-</div>
-
-<!-- Існуючий останній блок (причина використання) -->
-<div class="section">
-<h3>Чому я користуюся Character AI</h3>
-
-<p>
-Я часто використовую <b>Character AI</b>, тому що це зручний сервіс
-для спілкування з ботами та отримання інформації.
-</p>
-</div>
-
-</div> <!-- #container -->
 
 </body>
 </html>
