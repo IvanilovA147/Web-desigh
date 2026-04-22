@@ -92,14 +92,8 @@ img {
 }
 
 @keyframes fadeInImage {
-    from {
-        opacity: 0;
-        transform: scale(0.97);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 table {
@@ -139,10 +133,123 @@ form label {
 form button {
     background-color: #1f6e43;
     transition: 0.2s;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
 }
 form button:hover {
     background-color: #0f4a2e;
     transform: scale(1.02);
+}
+
+/* стилі для попапу */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s;
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-card {
+    background: white;
+    border-radius: 32px;
+    padding: 28px 32px;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.active .modal-card {
+    transform: scale(1);
+}
+.modal-card h3 {
+    margin-top: 0;
+    color: #1b4d2e;
+    font-size: 1.8rem;
+}
+.modal-card p {
+    margin: 16px 0 24px;
+    color: #2c3e2f;
+}
+.modal-close {
+    background: #1f6e43;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.modal-close:hover {
+    background: #0f4a2e;
+}
+
+/* стилі для вкладок */
+.tabs-section {
+    margin-top: 10px;
+}
+.tab-header {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.tab-btn {
+    background: #e2f0e6;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 60px;
+    font-weight: 600;
+    color: #1a3b2e;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    border: 1px solid transparent;
+}
+.tab-btn:hover {
+    background: #c8e0d2;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.08);
+}
+.tab-btn.active {
+    background: #1f6e43;
+    color: white;
+    box-shadow: 0 6px 12px rgba(31,110,67,0.3);
+}
+.tab-panel {
+    display: none;
+    background: #f9fbf9;
+    padding: 20px 24px;
+    border-radius: 28px;
+    border: 1px solid #d0e2d8;
+    animation: fadeInImage 0.25s ease;
+}
+.tab-panel.active {
+    display: block;
+}
+.tab-panel p {
+    margin: 0 0 12px;
+}
+.tab-panel ul {
+    margin: 8px 0 0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -153,20 +260,13 @@ form button:hover {
     form input, form select, form textarea { width: 100%; }
     form button { margin-left: 0; width: 100%; }
     th, td { padding: 8px 6px; font-size: 0.85rem; }
+    .tab-btn { padding: 10px 18px; font-size: 0.9rem; }
 }
 
-@media only screen and (min-width: 600px) {
-    #container { width: 90%; }
-}
-@media only screen and (min-width: 768px) {
-    #container { width: 85%; }
-}
-@media only screen and (min-width: 992px) {
-    #container { width: 75%; }
-}
-@media only screen and (min-width: 1200px) {
-    #container { width: 65%; }
-}
+@media only screen and (min-width: 600px) { #container { width: 90%; } }
+@media only screen and (min-width: 768px) { #container { width: 85%; } }
+@media only screen and (min-width: 992px) { #container { width: 75%; } }
+@media only screen and (min-width: 1200px) { #container { width: 65%; } }
 
 .format-gallery {
     display: flex;
@@ -241,10 +341,7 @@ small {
     margin-top: 8px;
     color: #2c3e2f;
 }
-
-.centered-text {
-    text-align: center;
-}
+.centered-text { text-align: center; }
 hr {
     margin: 20px 0;
     border: 0;
@@ -305,9 +402,40 @@ hr {
         </div>
     </div>
 
+    <!-- НОВА СЕКЦІЯ: ВКЛАДКИ (таби) -->
+    <div class="section tabs-section">
+        <h2>Дізнайтесь більше</h2>
+        <div class="tab-header">
+            <button class="tab-btn active" data-tab="tab1">Що нового?</button>
+            <button class="tab-btn" data-tab="tab2">Як створити бота</button>
+            <button class="tab-btn" data-tab="tab3">Поради експертів</button>
+        </div>
+        <div class="tab-content">
+            <div class="tab-panel active" id="tab1">
+                <p><strong>Оновлення 2026:</strong> Покращені моделі, швидші відповіді, нові голоси для персонажів. Також додано режим групових чатів з кількома AI.</p>
+                <p>Користувачі тепер можуть ділитися своїми персонажами у спільноті одним кліком.</p>
+            </div>
+            <div class="tab-panel" id="tab2">
+                <p>Створити власного персонажа дуже просто:</p>
+                <ul>
+                    <li>Натисніть “Create” у верхньому меню.</li>
+                    <li>Заповніть ім'я, привітання та опис характеру.</li>
+                    <li>Додайте аватар та визначте видимість (публічний/приватний).</li>
+                    <li>Почніть спілкування – AI навчається з кожним діалогом.</li>
+                </ul>
+            </div>
+            <div class="tab-panel" id="tab3">
+                <p>✔ Використовуйте конкретні привітання – це задає тон розмови.</p>
+                <p>✔ Регулярно оцінюйте відповіді (👍/👎) для покращення якості.</p>
+                <p>✔ Експериментуйте з "Definition" (розширений опис) для глибшої особистості.</p>
+                <p>✔ Спробуйте кімнати (Rooms) – можна об'єднати кількох персонажів в одному чаті.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="section">
         <h2>Зв'яжіться з нами</h2>
-        <form action="#" method="post">
+        <form id="contactForm" action="#" method="post">
             <div class="form-group"><label for="firstname">First name *:</label><input type="text" id="firstname" name="firstname" required minlength="3" placeholder="введіть ім'я"></div>
             <div class="form-group"><label for="lastname">Last name *:</label><input type="text" id="lastname" name="lastname" required minlength="3" placeholder="введіть прізвище"></div>
             <div class="form-group"><label for="query">Type of query *:</label><select id="query" name="query" required><option value="">-- Оберіть тип --</option><option value="general">Загальне питання</option><option value="support">Технічна підтримка</option><option value="collab">Співпраця</option><option value="other">Інше</option></select></div>
@@ -373,6 +501,111 @@ hr {
         </div>
     </div>
 </div>
+
+<!-- МОДАЛЬНЕ ВІКНО (попап) -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal-card">
+        <h3>✅ Дякуємо!</h3>
+        <p>Ваше повідомлення успішно надіслано. Ми зв'яжемося з вами найближчим часом.</p>
+        <button class="modal-close" id="closeModalBtn">Закрити</button>
+    </div>
+</div>
+
+<script>
+    (function() {
+        "use strict";
+
+        // ---------- СПЛИВАЮЧИЙ ЕЛЕМЕНТ (попап) після submit ----------
+        const form = document.getElementById('contactForm');
+        const modalOverlay = document.getElementById('successModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function showModal() {
+            modalOverlay.classList.add('active');
+        }
+        function hideModal() {
+            modalOverlay.classList.remove('active');
+        }
+
+        // Закриття по кнопці
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', hideModal);
+        }
+        // Закриття при кліку на overlay (фон)
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                hideModal();
+            }
+        });
+        // Закриття по клавіші Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                hideModal();
+            }
+        });
+
+        // Обробка відправки форми
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();  // не перезавантажуємо сторінку
+
+            // Перевірка валідності (required, minlength тощо)
+            if (!form.checkValidity()) {
+                // Якщо не валідна – показати стандартні повідомлення браузера
+                form.reportValidity();
+                return;
+            }
+
+            // Якщо все добре – показуємо попап
+            showModal();
+
+            // Опціонально: очистити форму після успішної відправки (можна закоментовано)
+            // form.reset();
+        });
+
+        // ---------- ВКЛАДКИ (TABS) з підтримкою hover (додатково) ----------
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        function switchTab(tabId) {
+            // Вимикаємо активний клас у всіх кнопок і панелей
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabPanels.forEach(panel => panel.classList.remove('active'));
+
+            // Активуємо потрібну кнопку та панель
+            const activeBtn = Array.from(tabButtons).find(btn => btn.dataset.tab === tabId);
+            const activePanel = document.getElementById(tabId);
+            if (activeBtn) activeBtn.classList.add('active');
+            if (activePanel) activePanel.classList.add('active');
+        }
+
+        // Додаємо обробники на клік
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabId = this.dataset.tab;
+                if (tabId) switchTab(tabId);
+            });
+
+            // * Додатково: перемикання при наведенні (hover) – згідно прикладу (можна залишити)
+            // Але щоб не заважати кліку, робимо hover тільки якщо явно потрібно.
+            // Згідно завдання "Додатково можна реалізувати переключення при наведенні курсова мишки"
+            btn.addEventListener('mouseenter', function() {
+                // Перемикаємо тільки якщо користувач хоче hover-навігацію;
+                // щоб не було конфлікту з кліком, додамо опціонально.
+                // Для демонстрації включаємо:
+                const tabId = this.dataset.tab;
+                if (tabId) switchTab(tabId);
+            });
+        });
+
+        // Ініціалізація: якщо жодна вкладка не активна, активуємо першу
+        const activeTabExists = Array.from(tabButtons).some(btn => btn.classList.contains('active'));
+        if (!activeTabExists && tabButtons.length > 0) {
+            const firstTabId = tabButtons[0].dataset.tab;
+            if (firstTabId) switchTab(firstTabId);
+        }
+
+    })();
+</script>
 
 </body>
 </html>
